@@ -14,7 +14,8 @@ app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));
 
 //Declare Variable
-const port = 3012;
+const port = process.env.PORT || 4000 
+//const port = 3012;
 
 //Routes
 app.use('/', indexRouter);
