@@ -1,10 +1,12 @@
 //Require Router out of express.router
 const { Router } = require('express');
+//Import controller
+const { messageGet, newMessagePOST } = require('../controller/messageController');
 
 //Create a Router
 const indexRouter = Router();
 
-//Declare Variables
+/* //Declare Variables
 const messages = [
   {
     text: "Hi there!",
@@ -16,24 +18,18 @@ const messages = [
     user: "Charles",
     added: new Date()
   }
-];
+]; */
 
 //First Route
-indexRouter.get('/', (req,res) => {
-    res.render('index', { title: 'Mini Messageboard', messages: messages });
-});
+indexRouter.get('/', messageGet);
 
 indexRouter.get('/new', (req,res) => {
     res.render('form', {} );
 });
 
-indexRouter.post('/new', (req,res) => {
-    //Payload delivered inside req.body.{html tag 'name'}
-    const { aMessage, aName } = req.body
-    //console.log(aMessage, aName);
-    messages.push( { text: aMessage, user: aName, added: new Date() });
-    res.redirect('/');
-});
+indexRouter.post('/new', newMessagePOST);
+
+//indexRouter.get('/testdb', messageGet);
 
 //Export Module
 module.exports = indexRouter;

@@ -1,7 +1,12 @@
+//Import and configure dotenv
+require('dotenv').config(); 
 //Require
 const express = require('express');
 const indexRouter = require('./routes/indexRouter');
 const path = require('node:path');
+
+
+//console.log(process.env);
 
 //Create Server
 app = express();
@@ -21,10 +26,10 @@ const port = process.env.PORT || 4000
 app.use('/', indexRouter);
 
 //Catch Errors
-app.use((err,req,res,next) => {
+/* app.use((err,req,res,next) => {
     console.log(err);
     res.status(err.statusCode || 500).send(err.message);
-});
+}); */
 
 //Server Listening
 app.listen(port, () => {
